@@ -1,0 +1,2 @@
+typings install dt~core-js --save --global
+typings install dt~node --save --global

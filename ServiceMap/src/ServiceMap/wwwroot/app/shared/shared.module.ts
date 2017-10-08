@@ -2,7 +2,7 @@
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { BusyModule, BusyConfig } from 'angular2-busy';
-import { ModalModule, PopoverModule, TooltipModule } from 'ng2-bootstrap';
+import { ModalModule, PopoverModule, TooltipModule } from 'ngx-bootstrap';
 import { PageModule } from '../pagination/page.module';
 import { LgModalComponent } from './lgModal.component';
 import { ToastrService } from './toastr.service';

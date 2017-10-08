@@ -31,6 +31,7 @@ _ReSharper*/
 #Nuget packages folder
 packages/
 lib/
+node_modules/
 *.js.map
 /ServiceMap/src/ServiceMap/wwwroot/app/app.component.js
 /ServiceMap/src/ServiceMap/wwwroot/app/app.module.js
@@ -38,3 +39,29 @@ lib/
 /ServiceMap/src/ServiceMap/wwwroot/app/environments/environment.js
 /ServiceMap/src/ServiceMap/wwwroot/app/environments/environment.prod.js
 /ServiceMap/src/ServiceMap/wwwroot/app/polyfills.js
+/ServiceMap/src/ServiceMap/wwwroot/app/home/welcome.component.js
+/ServiceMap/src/ServiceMap/wwwroot/app/pagination/page.component.js
+/ServiceMap/src/ServiceMap/wwwroot/app/pagination/page.js
+/ServiceMap/src/ServiceMap/wwwroot/app/pagination/page.module.js
+/ServiceMap/src/ServiceMap/wwwroot/app/pagination/page.service.js
+/ServiceMap/src/ServiceMap/wwwroot/app/servicesTnt/depot-detail.component.js
+/ServiceMap/src/ServiceMap/wwwroot/app/servicesTnt/depotDetails.js
+/ServiceMap/src/ServiceMap/wwwroot/app/servicesTnt/serviceTnt.js
+/ServiceMap/src/ServiceMap/wwwroot/app/servicesTnt/serviceTnt.module.js
+/ServiceMap/src/ServiceMap/wwwroot/app/servicesTnt/serviceTnt.service.js
+/ServiceMap/src/ServiceMap/wwwroot/app/servicesTnt/serviceTnt-filter.pipe.js
+/ServiceMap/src/ServiceMap/wwwroot/app/servicesTnt/serviceTnt-guard.service.js
+/ServiceMap/src/ServiceMap/wwwroot/app/servicesTnt/serviceTnt-list.component.js
+/ServiceMap/src/ServiceMap/wwwroot/app/shared/common.js
+/ServiceMap/src/ServiceMap/wwwroot/app/shared/IToastrSm.js
+/ServiceMap/src/ServiceMap/wwwroot/app/shared/lgModal.component.js
+/ServiceMap/src/ServiceMap/wwwroot/app/shared/shared.module.js
+/ServiceMap/src/ServiceMap/wwwroot/app/shared/star.component.js
+/ServiceMap/src/ServiceMap/wwwroot/app/shared/toastr.service.js
+/ServiceMap/src/ServiceMap/wwwroot/app/shared/toastr-custom-option.js
+/ServiceMap/src/ServiceMap/wwwroot/app/users/user.component.js
+/ServiceMap/src/ServiceMap/wwwroot/app/users/user.js
+/ServiceMap/src/ServiceMap/wwwroot/app/users/user.service.js
+/ServiceMap/src/ServiceMap/wwwroot/app/users/user-guard.service.js
+/ServiceMap/src/ServiceMap/wwwroot/app/users/user-list.component.js
+/ServiceMap/src/ServiceMap/wwwroot/app/users/user-module.js
