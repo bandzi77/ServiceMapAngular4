@@ -1,0 +1,41 @@
+{
+  "name": "service-map",
+  "version": "1.0.0",
+  "author": "Mariusz Hyla",
+  "description": "Service Map for TNT Clients",
+  "angular-cli": {},
+  "scripts": {
+    "tsc": "tsc",
+    "tsc:w": "tsc -w",
+    "lint": "tslint ./app/**/*.ts -t verbose",
+    "typings": "typings",
+    "postinstall": "typings install"
+  },
+  "private": true,
+  "dependencies": {
+    "@angular/common": "2.4.0",
+    "@angular/compiler": "2.4.0",
+    "@angular/core": "2.4.0",
+    "@angular/forms": "2.4.0",
+    "@angular/http": "2.4.0",
+    "@angular/platform-browser": "2.4.0",
+    "@angular/platform-browser-dynamic": "2.4.0",
+    "@angular/router": "3.4.0",
+    "angular-in-memory-web-api": "0.2.4",
+    "angular2-busy": "1.0.2",
+    "core-js": "2.4.1",
+    "reflect-metadata": "0.1.10",
+    "ng2-bootstrap": "1.3.3",
+    "ng2-toastr": "1.6.0",
+    "primeng": "2.0.3",
+    "rxjs": "5.0.1",
+    "systemjs": "0.20.2",
+    "ts-helpers": "1.1.1",
+    "zone.js": "0.7.4"
+  },
+  "devDependencies": {
+    "tslint": "^4.4.2",
+    "typescript": "2.1.5",
+    "typings": "2.1.0"
+  }
+}

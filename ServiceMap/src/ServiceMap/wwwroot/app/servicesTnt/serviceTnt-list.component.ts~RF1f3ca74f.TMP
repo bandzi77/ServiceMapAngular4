@@ -1,0 +1,218 @@
+﻿import { Component, OnInit, ViewChild, ViewContainerRef  } from '@angular/core';
+import { IServiceTnt, IServiceFilter } from './serviceTnt';
+import { IDepotDetails, IDepotDetailsFilter } from './depotDetails';
+import { IPage,IPageInfo } from '../pagination/page';
+import { ActivatedRoute, Router } from '@angular/router';
+import { ServicesTntService } from './serviceTnt.service';
+import { Subscription } from 'rxjs';
+import { LgModalComponent } from '../shared/lgModal.component';
+import { ToastsManager } from 'ng2-toastr/ng2-toastr';
+import { IResult } from '../shared/common';
+import { LazyLoadEvent, SelectItem, MultiSelect } from 'primeng/primeng'
+
+
+@Component({
+    templateUrl: 'app/servicesTnt/serviceTnt-list.component.html?v=${new Date().getTime()',
+    styleUrls: ['app/servicesTnt/serviceTnt-list.component.css']
+})
+
+export class ServiceTntListComponent implements OnInit {
+   
+    busyIndicator: Subscription;
+    pageTitle: string = "Mapa Serwisowa";
+    imageWidth: number = 50;
+    imageMargin: number = 2;
+    listFilter: string;
+    postCode: string = '';
+    cityName: string = '';
+    servicesTnt: IServiceTnt[];
+    depotTnt: IDepotDetails[];
+    paging: IPage;
+    pageInfo: IPageInfo;
+    errorMessage: string;
+    private serviceFilter: IServiceFilter;
+    columnOptions: SelectItem[];
+    cols: any;
+    cols1: any;
+    iscreated: boolean = false;
+    @ViewChild('lgModal') lgModalRef: LgModalComponent;
+
+    //TODO -usunąć
+    @ViewChild('multiselect') multi: MultiSelect;
+    constructor(private _serviceTntService: ServicesTntService,
+                private _route: ActivatedRoute,
+                private toastr: ToastsManager,
+                vcr: ViewContainerRef)
+    {
+        this.toastr.setRootViewContainerRef(vcr);
+    }
+
+    ngOnInit(): void {
+   
+        let id = +this._route.snapshot.params['currentPage'];
+        this.paging = this._getPage();
+        this.pageInfo = this._getPageInfo();
+
+
+        this.cols = [
+            { field: 'depotCode', header: 'Kod Depotu' },
+            { field: 'town', header: 'Miasto'},
+            { field: 'fromPostcode', header: 'Kod pocztowy od' },
+            { field: 'toPostcode', header: 'Kod pocztowy do' },
+
+            { field: 'sobota', header: 'Doręczenie sobotnie'  },
+            { field: 'ex9', header: 'ID09 00 Express' },
+            { field: 'ex10', header: 'ID10 00 Express' },
+            { field: 'ex12', header: 'ID12 00 Express' },
+
+
+             { field: 'priority', header: 'Przesyłka priorytetowa' },
+             { field: 'wieczorneDostarczenie', header: 'Wieczorne dostarczenie' },
+             //{ field: 'standardDeliveryOd', header: 'Doręcznia < br > od' },
+             //{ field: 'standardDeliveryDo', header: 'Doręcznia < br >do' }
+
+             { field: 'pickUpDomesticZgl', header: 'Zamówienia kuriera krajowego do<' },
+             { field: 'dateTimePickUpEksportSmZgl', header: 'Zamówienie kuriera międzynarodowego do' },
+             //{ field: 'samochodZwindaDostepnyWstandardzie', header: 'ISamochod z winda< br > dostepny w standardzie' },
+             { field: 'diplomatNextDay', header: 'Najwcześniejsza dostawa przesyłki pozasystemowej' },
+
+             { field: 'serwisMiejski', header: 'Serwis podmiejski '},
+             { field: 'serwisPodmiejski', header: 'Serwis miejski' },
+             { field: 'pickUpDomesticCzas', header: 'Minimalny czas na odbiór przesyłki drogowej' },
+             { field: 'pickUpEksportSmCzas', header: 'Minimalny czas na odbiór przesyłki lotniczej' }
+        ];
+
+        this.columnOptions = [];
+        for (let i = 0; i < this.cols.length; i++) {
+            this.columnOptions.push({ label: this.cols[i].header, value: this.cols[i] });
+        }
+
+   
+    }
+
+
+    //TODO - usunąć
+    private _getPage(): IPage {
+        return {
+            totalCount: 0,
+            pageSize: 25
+        };
+    }
+
+
+    private _getPageInfo(): IPageInfo {
+        return {
+            order_by: null,
+            current_page: 0,
+            page_size: 25
+        };
+    }
+
+    private _getData(filtr: IServiceFilter) {
+
+     //   this._setPage(filtr);
+        this.busyIndicator = this._serviceTntService.searchServicesTnt(filtr,this.pageInfo)
+            .subscribe(result => {
+                this.servicesTnt = result.serviceTnt;
+                this.paging = result.paging;
+                this.onGetComplete(result.result);
+            },
+            error => this.errorMessage = <any>error);
+    }
+
+    //_setPage(serviceFilter: IServiceFilter): void {
+    //    if (serviceFilter.currentPage === undefined) {
+    //        serviceFilter.currentPage = null;
+    //    };
+    //}
+
+    onSearchService() {
+        console.log('testowanie init');
+        let filtr = this._createServiceFilter();
+
+        this._getData(filtr);
+    }
+
+    onPageClicked(page: number) {
+        let filtr = this._createServiceFilter(page);
+        this._getData(filtr);
+    }
+
+    _createServiceFilter(page?: number): IServiceFilter {
+        let _serviceFilter: IServiceFilter =
+            {
+                postCode: this.postCode,
+                cityName: this.cityName,
+              //  currentPage: page
+            };
+
+        return _serviceFilter;
+    }
+
+    onClick(item: any) {
+        let filtr: IDepotDetailsFilter = { depotCode: item };
+        this.busyIndicator = this._serviceTntService.getDepotDetails(filtr).subscribe(result => {
+            this.depotTnt = result.depotDetails;
+            this.lgModalRef.show();
+        },
+            error => this.errorMessage = <any>error);
+    }
+
+
+    loadPageLazy(event: LazyLoadEvent) {
+        //in a real application, make a remote request to load data using state metadata from event
+        //event.first = First row offset
+        //event.rows = Number of rows per page
+        //event.sortField = Field name to sort with
+        //event.sortOrder = Sort order as number, 1 for asc and -1 for dec
+        //filters: FilterMetadata object having field as key and filter value, filter matchMode as value
+
+        //imitate db connection over a network
+        //setTimeout(() => {
+        //    if (this.datasource) {
+        //        this.cars = this.datasource.slice(event.first, (event.first + event.rows));
+        //    }
+        //}, 250);
+
+
+            //let filtr = this._createServiceFilter();
+
+            //this._getData(filtr);
+//
+
+        if (this.iscreated) {
+            this.pageInfo.order_by = 
+            this.pageInfo.current_page = (event.first / event.rows) + 1;
+            
+
+            this.onPageClicked((event.first / event.rows) + 1);
+        }
+        else {
+            this.iscreated = true;
+        }
+    }
+
+    _setOrderBy(sortField?: string, sortOrder?: number):string
+    {
+        let result = null;
+        if (sortField == undefined || sortField == null)
+        {
+            return result;
+        } 
+
+        result = sortField;
+
+        if (sortOrder == undefined || sortOrder == null)
+        {
+            return result;
+        }
+
+        return result = result + (sortOrder === -1) ? 'desc' : 'asc';
+    }
+
+    private onGetComplete(res: IResult): void {
+        if (!res.success) {
+            this.toastr.error(res.message, 'Błąd!');
+        }
+    }
+}

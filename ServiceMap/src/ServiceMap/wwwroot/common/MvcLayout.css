@@ -1,0 +1,55 @@
+﻿
+body {
+    padding-bottom: 70px;
+}
+
+.naglowek {
+    font-size: large;
+    font-weight: bold;
+}
+
+
+
+/* niebieski
+     .panel-primary > .panel-heading {
+    color: #fff;
+    background-color: #1cb3f4;
+    border-color: #1cb3f4;
+}
+*/
+
+/* Panel podstawowy*/
+.panel-primary > .panel-heading {
+    color: #777;
+    font-size:medium;
+    font-weight:bold;
+}
+
+/* Button podstawowy*/
+
+.btn-primary {
+     color: #fff; 
+     background-color: #f06000;
+     border-color: #f06000;
+}
+
+.btn-primary:hover {
+     color: #fff; 
+    background-color: #f87018;
+    border-color: #f87018;
+}
+
+.btn-primary:active {
+     color: #fff; 
+    background-color: #f06000 !important;
+    border-color: #f87018 !important;
+}
+
+ /*Linki SM */ 
+a.sm-link{
+    color: #777 !important;
+}
+
+a.sm-link:hover{
+    color:  #333 !important;
+}

@@ -1,0 +1,20 @@
+﻿
+
+.panel-primary > .panel-heading {
+    border-color: white;
+}
+
+.container-in-form-psz {
+    /*background:$background-container-psz;
+    color:$text-color-container-psz;
+    border: 1px solid $color-container-psz;*/
+	background:#1367AD none repeat scroll 0 0;
+	color: #FFF;
+	 border: 1px solid #666666;
+    padding: 10px;
+    top: 20px;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    margin-bottom: 15px;
+    position: static;
+}

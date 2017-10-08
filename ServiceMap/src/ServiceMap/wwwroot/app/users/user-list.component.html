@@ -1,0 +1,98 @@
+﻿<div [ngBusy]="{busy: busyIndicator}"></div>
+<div class="form-inline">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <div class="form-group">
+                <div>
+                    <label for="pesel" style="font-size:small;">Podaj </label>
+                    <input class="form-control"
+                           type="text"
+                           autocomplete="off"
+                           focus="true"
+                           placeholder="Email"
+                           [(ngModel)]="email"
+                           (keyup.enter)="onSearchUsers()" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div>
+                    <label class="btn btn-psz-filter">
+                        <input id="isLockedId"
+                               type="checkbox"
+                               [(ngModel)]="showLockedOnly" />
+                        Pokaż konta zablokowane
+                    </label>
+                </div>
+            </div>
+            <!--TODO-->
+            <!--[routerLink]="['/userlist']"
+            [queryParams]="{email:email, showLockedOnly:showLockedOnly }"-->
+            <button name="searchBtn"
+                    class="btn btn-sm-orange"
+                    (click)='onSearchUsers()'>
+                <i class="fa fa-search fa-1x"></i> &nbsp;&nbsp;Szukaj
+            </button>
+        </div>
+    </div>
+</div>
+
+<p-dataTable [value]="users"
+             scrollable="true" scrollHeight="460px" scrollWidth="100%;"
+             [paginator]="true" [pageLinks]="8" [rows]="15" [rowsPerPageOptions]="[15,25,50]"
+             [globalFilter]="gb"
+             [rowHover]="true"
+             #dt>
+
+    <p-column field="tntUserName"
+              header="Numer Klienta"
+              [filter]="true"
+              [style]="{'width':'100px','word-wrap':'break-word'}"
+              [sortable]="true"
+              filterPlaceholder="Szukaj"></p-column>
+
+    <p-column field="email"
+              header="Email"
+              [filter]="true"
+              [style]="{'width':'400px','word-wrap':'break-word'}"
+              [sortable]="true"
+              filterPlaceholder="Szukaj"></p-column>
+
+    <p-column field="limitOfRequestsPerDay" [style]="{'width':'80px'}" [sortable]="true">
+        <template pTemplate="header">
+            <span>Limit<br>zapytań</span>
+        </template>
+    </p-column>
+
+    <p-column field="numberOfRequestsPerDay" [style]="{'width':'80px'}" [sortable]="true">
+        <template pTemplate="header">
+            <span>Liczba<br>zapytań</span>
+        </template>
+    </p-column>
+
+    <p-column field="isSuperUser" header="Uprawnienia administratora" [filter]="true" [style]="{'overflow':'visible','width':'210px','text-align':'center'}" filterMatchMode="equals" [sortable]="true">
+        <template pTemplate="filter" let-col>
+            <p-dropdown [options]="checkSelector" appendTo="body" [style]="{'width':'100%'}" (onChange)="dt.filter($event.value,col.field,col.filterMatchMode)" styleClass="ui-column-filter"></p-dropdown>
+        </template>
+        <template let-col let-user="rowData" pTemplate="body">
+            <span *ngIf="user[col.field]"><i class="fa fa-check-circle fa-1-5x text-success-sm" aria-hidden="true"></i></span>
+        </template>
+    </p-column>
+
+    <p-column field="isLocked" header="Konto zablokowane" [filter]="true" [style]="{'overflow':'visible','width':'170px','text-align':'center'}" filterMatchMode="equals" [sortable]="true">
+        <template pTemplate="filter" let-col>
+            <p-dropdown [options]="checkSelector" appendTo="body" [style]="{'width':'100%'}" (onChange)="dt.filter($event.value,col.field,col.filterMatchMode)" styleClass="ui-column-filter"></p-dropdown>
+        </template>
+        <template let-col let-user="rowData" pTemplate="body">
+            <span *ngIf="user[col.field]" ><i class="fa fa-exclamation-circle fa-1-5x text-danger-sm" aria-hidden="true"></i></span>
+        </template>
+    </p-column>
+
+    <p-column header="Edycja" [style]="{'width':'75px'}">
+        <template let-user="rowData" pTemplate="body">
+            <button class="btn btn-psz-blue btn-xs btn-sm-font-small"
+                    (click)="onSelectUser(user)">
+                <i class="fa fa-pencil" aria-hidden="true"></i>  Edytuj
+            </button>
+        </template>
+    </p-column>
+</p-dataTable>

@@ -1,0 +1,44 @@
+﻿table {
+    width: 100%;
+    height:95%;
+}
+
+th {
+     white-space: nowrap;  
+     height:55px;
+}
+
+/*tbody {
+  border-top: 0px;
+  height: 490px;
+}*/
+
+.sm-wrap-tekst{
+    word-wrap: break-word;
+}
+
+.sm-common-width{
+    width: 150px;
+}
+
+.sm-email-col-width-th{
+    min-width:255.2px !important;
+    width:255.2px !important;
+}
+.sm-email-col-width-td{
+    min-width:254px !important;
+    width:254px !important;
+}
+
+.sm-IsSuperUser-col-width{
+    width:180px;
+}
+
+.sm-last-coll-with {
+    width:100%;
+}
+
+.panel-primary > .panel-heading {
+    border-color: white;
+}
+

@@ -1,0 +1,129 @@
+html, body {
+    height: 100%;
+}
+
+div.panel-heading {
+    font-size: x-large;
+}
+
+/*
+   Pasek nawigacyjny
+
+    .ui-datatable .ui-datatable-thead>tr>th, .ui-datatable .ui-datatable-tfoot>tr>td, .ui-datatable .ui-datatable-data>tr>td
+
+*/
+
+/* Pomarañczowe navbar oraz DropDown (Menu rozwijane) */
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:focus, .navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:focus, .navbar-default .navbar-nav > .open > a:hover,
+.dropdown-menu > li > a:focus, .dropdown-menu > li > a:hover {
+    color: white;
+    background-color: #f87018 !important;
+}
+
+/* Pomarañczowy focus nad przyciskiem */
+.navbar-default .navbar-nav > li > a:focus, .navbar-default .navbar-nav > li > a:hover {
+    color: #f87018;
+}
+
+/*Usuwa domyœlny kolor dla elemnentu w rozwijanym menu*/
+/*.dropdown-menu>li>a, .sm-dropdown-padding {*/
+/*padding: 3px 15px !important;*/
+/*width:100%;*/
+/*}*/
+
+.sm-dropdown-padding {
+    padding-left: 20px;
+}
+/*Usuwa domyœlny kolor dla elemnentu w rozwijanym menu*/
+.dropdown-menu > li > a:focus, .dropdown-menu > li > a:hover {
+    background-image: none !important;
+}
+
+/*Rozwijane menu z taka sam¹ d³ugoœci¹ dla drop down i jego elementów*/
+/*.dropdown-menu {
+  width: 100%; 
+}*/
+
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .open > a {
+    /* background-image: -webkit-linear-gradient(top,#dbdbdb 0,#e2e2e2 100%); */
+    background-image: -o-linear-gradient(top,#dbdbdb 0,#e2e2e2 100%);
+    /* background-image: -webkit-gradient(linear,left top,left bottom,from(#dbdbdb),to(#e2e2e2)); */
+    background-image: none;
+}
+
+.btn-psz-blue {
+    background-color: #1cb3f4;
+    border-color: #1cb3f4;
+    color: #fff;
+    height: 22px;
+}
+
+    .btn-psz-blue:hover,
+    .btn-psz-blue:focus,
+    .btn-psz-blue:active,
+    .btn-psz-blue.active {
+        background-color: #0ba8eb;
+        border-color: #0ba8eb;
+        color: #fff;
+    }
+
+.btn-psz-blue-locked {
+    background-color: #1cb3f4;
+    border-color: #1cb3f4;
+    color: #fff;
+}
+
+
+.btn-sm-font-small {
+    font-size: small !important;
+}
+
+
+.btn-psz-green {
+    background-color: #189A46;
+    border-color: #189A46;
+    color: #fff;
+}
+
+    .btn-psz-green:hover,
+    .btn-psz-green:focus,
+    .btn-psz-green:active,
+    .btn-psz-green.active {
+        background-color: #15843c;
+        border-color: #116e32;
+        color: #fff;
+    }
+
+.fa-1-5x {
+    font-size: 1.5em !important;
+    vertical-align: middle;
+}
+
+.text-warning-sm {
+    color: #ff9900;
+}
+
+.text-success-sm {
+    color: #199a46;
+}
+
+.text-danger-sm {
+    color: #db2020;
+}
+
+.text-blue-sm {
+    color: #1468b2;
+}
+
+/*@media (max-height: 648px) {
+  tbody {
+       height: 200px;
+  }
+}
+
+@media (min-height: 649px) {
+    tbody {
+        height: 300px;
+    }
+}*/

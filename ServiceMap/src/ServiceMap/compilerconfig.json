@@ -1,0 +1,14 @@
+﻿[
+  {
+    "outputFile": "wwwroot/lib/font-awesome/scss/_bordered-pulled.css",
+    "inputFile": "wwwroot/lib/font-awesome/scss/_bordered-pulled.scss"
+  },
+  {
+    "outputFile": "wwwroot/app/app.component.css",
+    "inputFile": "wwwroot/app/app.component.scss"
+  },
+  {
+    "outputFile": "wwwroot/app/app.componentS.css",
+    "inputFile": "wwwroot/app/app.componentS.scss"
+  }
+]

@@ -1,0 +1,24 @@
+﻿    <div class="text-center" style="margin:0px;">
+        <!-- items being paged style="margin-top:-15px; height:10px; border-top:solid #bdc3c7"-->
+        <div *ngFor="let item of pagedItems">{{item.productName}}</div>
+        <!-- pager -->
+        <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+            <li [ngClass]="{disabled:pager.currentPage === 1}">
+                <a (click)="onSetPage(1)"><<</a>
+            </li>
+            <li [ngClass]="{disabled:pager.currentPage === 1}">
+                <a (click)="onSetPage(pager.currentPage - 1)"><</a>
+            </li>
+            <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+                <a (click)="onSetPage(page)">{{page}}</a>
+            </li>
+            <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                <a (click)="onSetPage(pager.currentPage + 1)">></a>
+            </li>
+            <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+                <a (click)="onSetPage(pager.totalPages)">>></a>
+            </li>
+        </ul>
+    </div>
+
+<!--<hr />-->

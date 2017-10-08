@@ -1,0 +1,73 @@
+﻿<div [ngBusy]="{busy: busyIndicator}">
+    <nav class="navbar navbar-default" *ngIf="currentUser.isSuperUser !== undefined">
+        <div class="container-fluid">
+            <ul class="nav navbar-nav navbar-left">
+                <li [routerLinkActive]="['active']"><a [routerLink]="['/serviceTnt']">Mapa Serwisowa</a></li>
+                <li [routerLinkActive]="['active']" *ngIf="currentUser.isSuperUser"><a [routerLink]="['/userlist']">Lista Użytkowników</a></li>
+                <!--<li *ngIf="isSuperusers"><a [routerLink]="['/welcome']">Konta Użytkowników[queryParams]="{ _id:0 }</a></li>-->
+                <li [routerLinkActive]="['active']" *ngIf="currentUser.isSuperUser"><a [routerLink]="['/adduser']" [queryParams]="{ _id:0 }">Dodaj Użytkownika</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" name="userMenu" data-toggle="dropdown" href="#">
+                        <i class="fa fa-link" aria-hidden="true"></i>&nbsp;Przydatne linki&nbsp;<span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="userMenu">
+                        <li role="presentation">
+                            <!--<img alt="TNT" src="app/assets/images/logo.svg" style="width: 30px; height: 30px;" />-->
+                            <a href="http://www.tnt.com/express/pl_pl/site/home.html" target="_blank">
+                                <i class="fa fa-home" aria-hidden="true"></i> Strona główna TNT
+                            </a>
+                        </li>
+                        <!--tooltip="Link do aplikacji Tereny Odległe" placement="bottom"-->
+                        <li role="presentation">
+                            <a href="http://e-tnt.pl/ooa/" target="_blank">
+                                <i class="fa fa-truck" aria-hidden="true"></i> Tereny Odległe
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" name="userMenu" data-toggle="dropdown" href="#">
+                        <i class="fa fa-phone-square" aria-hidden="true"></i>&nbsp;Kontakt&nbsp;<span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="userMenu">
+                        <li role="presentation">
+                            <a href="mailto:pl.kontakt@tnt.com" tabindex="-1" tooltip="Email do Działu Obsługi Klienta" placement="bottom">
+                                <i class="fa fa-at" aria-hidden="true"></i> pl.kontakt@tnt.com
+                            </a>
+                        </li>
+                        <li role="presentation">
+                            <div class="sm-dropdown-padding"
+                                 tooltip="Telefon do Działu Obsługi Klienta" placement="bottom">
+                                <i class="fa fa-phone" aria-hidden="true"></i> 801 310 000
+                            </div>
+                        </li>
+                        <li role="presentation">
+                            <div class="sm-dropdown-padding"
+                                 tooltip="Telefon do Działu Obsługi Klienta" placement="bottom">
+                                <i class="fa fa-phone" aria-hidden="true"></i> 22 771 71 71
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" name="userMenu" data-toggle="dropdown" href="#">
+                        <div style="float :left; white-space: nowrap; text-overflow: ellipsis; max-width: 200px;overflow: hidden">
+                            <i class="fa fa-user fa-fw"></i>&nbsp;{{currentUser.userEmail}}&nbsp;
+                        </div><span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="userMenu">
+                        <li role="presentation">
+                            <a href="Account/Logout" tabindex="-1" role="menuitem"><i class="fa fa-fw fa-power-off"></i> Wyloguj</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container" style="height:85%" [hidden]="currentUser.isSuperUser == undefined">
+        <router-outlet></router-outlet>
+    </div>
+</div>

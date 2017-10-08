@@ -1,0 +1,175 @@
+﻿<div [ngBusy]="{busy: busyIndicator}">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            {{pageTitle}}
+        </div>
+        <div class="panel-body" *ngIf="userForm">
+            <form autocomplete="off"
+                  class="form-horizontal"
+                  (ngSubmit)="saveUser()"
+                  [formGroup]="userForm"
+                  novalidate>
+                <fieldset>
+
+                    <div class="form-group" [ngClass]="{'has-error': userNameMessage}">
+                        <label class="col-md-2 control-label"
+                               for="userNameId">Numer Klienta</label>
+                        <div class="col-md-8">
+                            <input autocomplete="off"
+                                   class="form-control"
+                                   id="userNameId"
+                                   type="text"
+                                   placeholder="Numer Klienta (wymagane)"
+                                   formControlName="tntUserName"
+                                   maxlength="9" />
+
+                            <span class="help-block" *ngIf="userNameMessage">
+                                {{ userNameMessage }}
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="form-group" [ngClass]="{'has-error': emailMessage}">
+                        <label class="col-md-2 control-label"
+                               for="emailId">Email</label>
+                        <div class="col-md-8">
+                            <div class="input-group">
+                                <input autocomplete="off"
+                                       class="form-control"
+                                       id="emailId"
+                                       type="email"
+                                       placeholder="Email (wymagane)"
+                                       formControlName="email"
+                                       maxlength="250" />
+                                <span class="input-group-addon btn"
+                                      popover="Dopuszczalne znaki specjalne w email prefix: '.' '_' '%' '+' '-'"
+                                      popoverTitle="Email:"
+                                      placement="right"><i class="fa fa-1x fa-question-circle-o" aria-hidden="true"></i></span>
+                            </div>
+                            <span class="help-block" *ngIf="emailMessage">
+                                {{ emailMessage }}
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="form-group" [ngClass]="{'has-error': passwordMessage}">
+                        <label class="col-md-2 control-label"
+                               for="passwordId">Hasło</label>
+                        <div class="col-md-8">
+                            <div class="input-group">
+                                <span (mousedown)="onEyeEvent($event)"
+                                      (mouseup)="onEyeEvent($event)"
+                                      (mouseleave)="onEyeEvent($event)"
+                                      class="input-group-addon btn"
+                                      [ngClass]="{'disabled': userForm.get('_id').value!=0}"><i class="fa fa-eye fa-1x"></i></span>
+                                <input class="form-control"
+                                       autocomplete="off"
+                                       id="passwordId"
+                                       type={{inputType}}
+                                       placeholder="Hasło (wymagane)"
+                                       formControlName="password"
+                                       maxlength="12" />
+                                <span class="input-group-addon btn"
+                                      popover="Wymagana długość hasła to minimum 8 i maksimum 12 znaków. Rozróżniane są duże i małe litery. Hasło musi zawierać litery, co najmniej jedną cyfrę oraz znak specjalny: '_' '!' '@' '#' '$' '%' '^' '&' '*' '(' ')' '+' '-' '='"
+                                      popoverTitle="Hasło:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"
+                                      placement="right"><i class="fa fa-1x fa-question-circle-o" aria-hidden="true"></i></span>
+                            </div>
+                            <span class="help-block" *ngIf="passwordMessage">
+                                {{ passwordMessage }}
+                            </span>
+                        </div>
+                        <div>
+                        </div>
+                    </div>
+
+                    <div class="form-group"
+                         *ngIf="!userForm.get('isSuperUser').value"
+                         [@shrinkOut]="!userForm.get('isSuperUser').value"
+                         [ngClass]="{'has-error': limitPerDayMessage }">
+                        <label class="col-md-2 control-label"
+                               for="limitOfRequestsPerDayId">Limit zapytań</label>
+                        <div class="col-md-8">
+                            <input autocomplete="off"
+                                   class="form-control"
+                                   id="limitOfRequestsPerDayId"
+                                   type="text"
+                                   placeholder="Limit zapytań w ciągu dnia (wymagane)"
+                                   formControlName="limitOfRequestsPerDay"
+                                   maxlength="3" />
+                            <span class="help-block" *ngIf="limitPerDayMessage">
+                                {{ limitPerDayMessage }}
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-3">
+                            <!-- Hack na to aby przycisk pojawiał się z tooltipem lub nie -->
+                            <span *ngIf="isDisabledCheckBoxTntAccount" tooltip="Brak możliwości zmiany typu konta dla adresów spoza domeny tnt.com"
+                                  placement="left">
+                                <label class="btn btn-primary  sm-check-btn" [ngClass]="{'disabled': isDisabledCheckBoxTntAccount}">
+                                    <input id="isSuperUserId"
+                                           type="checkbox"
+                                           formControlName="isSuperUser" />
+                                    Uprawnienia administratora
+                                </label>
+                            </span>
+                            <label *ngIf="!isDisabledCheckBoxTntAccount" class="btn btn-primary  sm-check-btn" [ngClass]="{'disabled': isDisabledCheckBoxTntAccount}">
+                                <input id="isSuperUserId"
+                                       type="checkbox"
+                                       formControlName="isSuperUser" />
+                                Uprawnienia administratora
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-3">
+                            <label class="btn btn-primary sm-check-btn" [ngClass]="{'btn-danger': userForm.get('isLocked').value}">
+                                <input id="isLockedId"
+                                       type="checkbox"
+                                       formControlName="isLocked" />
+                                Konto zablokowane
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-7 col-md-4">
+                            <span>
+                                <button class="btn btn-sm-green btn-nav-proc-sm"
+                                        type="submit"
+                                        [disabled]="!userForm.valid">
+                                    <i class="fa fa-check fa-1x" aria-hidden="true"></i> Zapisz
+                                </button>
+                            </span>
+                            <span>
+                                <!--[routerLink]="['/userlist']"-->
+                                <a class="btn btn-default btn-nav-proc-sm"
+                                   (click)="onBack()">
+                                    Wróć
+                                </a>
+                            </span>
+
+                            <span class="btn btn-sm-red btn-nav-proc-sm"
+                                  (click)="deleteUser()">
+                                <i class="fa fa-trash-o fa-1x" aria-hidden="true"></i> Usuń
+                            </span>
+
+                            <!--<span>
+                                <a class="btn btn-default"
+                                   style="width:80px"
+                                   (click)="deleteUser()">
+                                    Usuń
+                                </a>
+                            </span>-->
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</div>
+<!--<br>Dirty: {{ userForm.dirty }}
+<br>Touched: {{ userForm.touched }}
+<br>Valid: {{ userForm.valid }}
+<br>Value: {{ userForm.value | json }}-->

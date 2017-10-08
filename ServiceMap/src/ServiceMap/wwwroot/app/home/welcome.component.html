@@ -1,0 +1,38 @@
+﻿<div class="panel panel-primary">
+    <div class="panel-heading">
+        {{pageTitle}}
+    </div>
+    <div class="panel-body"  >
+        <div class="row" >
+          
+        </div>
+        <div class="row"  >
+            <div class="text-center">Developed by:</div>
+            <h3 class="text-center">Deborah Kurata</h3>
+
+            <div class="text-center">@deborahkurata</div>
+            <div class="text-center">
+                <a href="http://www.bit.ly/DeborahKsBlog">www.bit.ly/DeborahKsBlog</a>
+            </div>
+        </div>
+    </div>
+</div>
+<button type="button" class="btn btn-primary" (click)="static_Modal.show()">Static modal</button>
+
+<div class="modal fade" bsModal #static_Modal="bs-modal" [config]="{backdrop: 'static'}"
+     tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title pull-left">Static modal</h4>
+                <button type="button" class="close pull-right" aria-label="Close" (click)="staticModal.hide()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                This is static modal, backdrop click will not close it.
+                Click <b>&times;</b> to close modal.
+            </div>
+        </div>
+    </div>
+</div>

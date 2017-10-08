@@ -1,0 +1,211 @@
+﻿/*Czcionka*/
+@font-face {
+    font-family: 'tnt300';
+    src: url('fonts/MuseoSans-300.otf') format('opentype');
+}
+
+@font-face {
+    font-family: 'tnt500';
+    src: url('fonts/MuseoSans-500.otf') format('opentype');
+}
+
+@font-face {
+    font-family: 'tnt700';
+    src: url('fonts/MuseoSans-700.otf') format('opentype');
+}
+
+body {
+    font-family: tnt500;
+}
+
+/*Pasek nawigacyjny */
+.navbar-default {
+    background-color: white;
+    border-bottom-color: #ff6600;
+    background-image: none;
+}
+
+.navbar-fixed-bottom {
+    border-top-color: #ff6600;
+    padding-top: 10px;
+    color: #333;
+}
+
+/* Panel podstawowy*/
+.panel-primary > .panel-heading {
+    color: black;
+    background-color: white;
+    border-color: #f06000;
+}
+
+.panel-primary {
+    border-color: #f06000;
+}
+
+    .panel-primary > .panel-heading {
+        background-image: none;
+    }
+
+.sm-text-dark-grey {
+    /*color: #333;*/
+    font-size: medium;
+    font-weight: bold;
+}
+
+.sm-text-dark-grey-footer {
+    /*color: #777;*/
+    color: #333;
+    font-size: small;
+    font-weight: bold;
+}
+
+.sm-text-light-blue {
+    color: #1cb3f4;
+}
+
+.btn-nav-proc-sm {
+    min-width: 100px;
+}
+
+.btn-sm-orange {
+    background-color: #f06000;
+    border-color: #f06000;
+    color: white;
+}
+
+    .btn-sm-orange:hover,
+    .btn-sm-orange:focus,
+    .btn-sm-orange:active {
+        background-color: #f87018;
+        border-color: #f87018;
+        color: white;
+    }
+
+.btn-sm-green {
+    background-color: #189A46;
+    border-color: #189A46;
+    color: #fff;
+}
+
+    .btn-sm-green:hover,
+    .btn-sm-green:focus,
+    .btn-sm-green:active,
+    .btn-sm-green.active {
+        background-color: #15843c;
+        border-color: #116e32;
+        color: #fff;
+    }
+
+.btn-sm-red {
+    background-color: #DB2020;
+    border-color: #DB2020;
+    color: #fff;
+}
+
+    .btn-sm-red:hover,
+    .btn-sm-red:focus,
+    .btn-sm-red:active,
+    .btn-sm-red.active {
+        background-color: #c51d1d;
+        border-color: #af1919;
+        color: #fff;
+    }
+
+/*Nadpisanie stylów bootsrapowowych*/
+.tooltip-inner {
+    background-color: white;
+    /*#337ab7;*/
+    color: black;
+    font-weight: normal;
+    border: 1px solid black !important;
+}
+
+.tooltip .tooltip-arrow {
+    border-bottom-color: white;
+}
+
+/* Nadpisuje style primeng*/
+.ui-datatable .ui-datatable-thead > tr > th, .ui-datatable .ui-datatable-tfoot > tr > td, .ui-datatable .ui-datatable-data > tr > td {
+    /*border-style: 0px 0 !important;*/
+    border-style: none !important;
+    border-left: 1px solid #ccc !important;
+}
+
+.ui-multiselect .ui-multiselect-label {
+    font-size: smaller;
+}
+
+.ui-datatable-scrollable-body {
+    overflow-y: scroll !important;
+}
+
+/*Nadpisuje style wybierania kolumn*/
+/*Tło wyboru kolumn w dropdown-list*/
+.ui-widget-header .ui-state-highlight, .ui-widget-content .ui-state-highlight, .ui-state-highlight {
+    background: #186ba0 !important;
+}
+
+/*Checkobxy slategrey*/
+.ui-chkbox-box.ui-state-active, .ui-radiobutton-box.ui-state-active {
+    border: 1px solid #186ba0 !important;
+    background: white !important;
+    color: #555555 !important;
+}
+
+.ui-widget {
+    font-family: tnt300, Helvetica, Arial, sans-serif,"Roboto", "Trebuchet MS" !important;
+}
+
+/*Wielkość czcionek w oknie wyboru kolumn*/
+li > div + label {
+    font-weight: 300;
+    font-size: smaller;
+}
+
+/*Style dotyczące tabel*/
+th {
+    color: white !important; /* nadpisanie primeng*/
+    /*background-color: green !important; /*#293f50 #333f48 #0b77a7 #648880, #293f50  nadpisane primeng  */
+    /*background: #333f48 !important;
+    background: -webkit-linear-gradient(#333f48,#648880) !important;*/ /* For Safari 5.1 to 6.0 */
+    /*background: -o-linear-gradient( #333f48,#648880 ) !important;*/ /* For Opera 11.1 to 12.0 */
+    /*background: -moz-linear-gradient( #333f48,#648880 ) !important;*/ /* For Firefox 3.6 to 15 */
+    /*background: linear-gradient( #333f48,#648880) !important;*/ /* Standard syntax */
+    background-color: #186ba0 !important;
+    vertical-align: text-top !important;
+}
+
+/*th:first-child {
+        border-radius: 8px 0 0 0;
+        border-left: 0px;
+    }
+
+    th:last-child {
+        border-radius: 0 8px 0 0;
+    }*/
+
+th {
+    white-space: nowrap;
+}
+
+tr {
+    height: 10px !important;
+}
+
+ tr.ui-widget-content:hover {
+        font-family:tnt700;
+        font-weight:800
+    }
+
+td, th {
+    border-left: 1px solid #ccc;
+    font-size: smaller;
+}
+
+tr:last-child {
+    border-bottom: 1px solid #ccc;
+}
+
+td:last-child {
+    border-right: 1px solid #ccc !important;
+}

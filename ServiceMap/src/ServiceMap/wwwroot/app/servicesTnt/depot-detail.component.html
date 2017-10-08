@@ -1,0 +1,51 @@
+﻿
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        {{pageTitle}}
+    </div>
+    <div class="panel-body" *ngIf="depotsTnt && depotsTnt.length">
+
+        <div class="form-group" *ngFor="let item of depotsTnt;">
+            <!-- 1 -->
+            <div class="row">
+                <strong class="col-md-4">Kod depotu:</strong>
+                <div class="col-md-8">{{item.depotCode}}</div>
+            </div>
+            <div class="row">
+                <strong class="col-md-4 text-nowrap">Miasto:</strong>
+                <div class="col-md-8">{{item.addressesTown}}</div>
+            </div>
+            <div class="row">
+                <strong class="col-md-4 text-nowrap">Kod pocztowy:</strong>
+                <div class="col-md-8">{{item.addressesPostcode}}</div>
+            </div>
+            <div class="row">
+                <strong class="col-md-4 text-nowrap">Ulica:</strong>
+                <div class="col-md-8">{{item.addressesStreet}}</div>
+            </div>
+            <div class="row">
+                <strong class="col-md-4 text-nowrap">Nadanie przesyłek lotniczych:</strong>
+                <div class="col-md-8">{{item.internationalPackageHoursInfo}}</div>
+            </div>
+            <!-- 2_1 -->
+            <div class="row">
+                <strong class="col-md-4 text-nowrap">Nadanie przesyłek drogowych:</strong>
+                <div class="col-md-8">{{item.domesticPackageHoursInfo}}</div>
+            </div>
+            <div class="row">
+                <strong class="col-md-4 text-nowrap">Odbiór w soboty:</strong>
+                <div class="col-md-8">{{item.saturdayPackageHoursInfo}}</div>
+            </div>
+            <div class="row">
+                <strong class="col-md-4 text-nowrap">Odbiór paszportów:</strong>
+                <div class="col-md-8">{{item.passportPickupHoursInfo}}</div>
+            </div>
+            <div class="row">
+                <strong class="col-md-4 text-nowrap">Odbiór przesyłek w tygodniu:</strong>
+                <div class="col-md-8">{{item.weekPackageHoursInfo}}</div>
+            </div>
+            <hr />
+        </div>
+    </div>
+</div>
+<span *ngIf="depotsTnt && depotsTnt.length==0">Brak danych</span>

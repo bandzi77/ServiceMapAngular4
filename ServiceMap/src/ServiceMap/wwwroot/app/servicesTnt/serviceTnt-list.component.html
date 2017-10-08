@@ -1,0 +1,218 @@
+﻿<div [ngBusy]="{busy: busyIndicator}">
+    <div class="form-inline">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <div class="form-group">
+                    <div>
+                        <label for="postCode" style="font-size:small">Podaj </label>
+                        <input class="form-control"
+                               type="text"
+                               autocomplete="off"
+                               focus="true"
+                               placeholder="Kod pocztowy"
+                               [(ngModel)]="postCode"
+                               (keyup.enter)="onSearchService()" />
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div>
+                        <label for="cityName" style="font-size:small">lub</label>
+                        <input class="form-control"
+                               type="text"
+                               autocomplete="off"
+                               placeholder="Nazwa miasta"
+                               [(ngModel)]="cityName"
+                               (keyup.enter)="onSearchService()" />
+                    </div>
+                </div>
+                <button name="searchBtn"
+                        class="btn btn-sm-orange"
+                        (click)='onSearchService()'>
+                    <i class="fa fa-search fa-1x"></i> &nbsp;&nbsp;Szukaj
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!--<div class="row">
+        <div class="col-md-6">
+            {{listFilter}}
+        </div>
+    </div>-->
+    <!--[first]="pageInfo.current_page"-->
+
+
+    <p-dataTable #dataTable [value]="servicesTnt"
+                 scrollable="true" scrollHeight="420px" scrollWidth="100%"
+                 [lazy]="true" [rows]="15"
+                 [paginator]="true" [pageLinks]="8"
+                 [rowsPerPageOptions]="[15,25,50]"
+                 [totalRecords]="paging.totalCount" (onLazyLoad)="loadPageLazy($event)"
+                 [sortFile]="town"
+                 [rowHover]="true"
+                 >
+        <p-header>
+            <div style="text-align:left">
+                <p-multiSelect #multiselect [options]="columnOptions" [(ngModel)]="cols"></p-multiSelect>
+                <span style="vertical-align:top; padding-left:20px;" *ngIf="requestsPerDay.limitOfRequestsPerDay!=null">
+                    Liczba zapytań w ciągu dnia: {{requestsPerDay.numberOfRequestsPerDay}} / {{requestsPerDay.limitOfRequestsPerDay}}
+                </span>
+            </div>
+        </p-header>
+        <p-column *ngFor="let col of cols"
+                  [field]="col.field"
+                  [header]="col.header"
+                  [style]="col.field=='depotCode'?{'width':'80px'}:
+                col.field=='town'?{'width':'350px'}:
+                (col.field=='fromPostcode'||col.field=='toPostcode')?{'width':'120px'}:
+                (col.field=='sobota'||col.field=='serwisMiejski'||col.field=='serwisPodmiejski')?{'width':'100px','text-align':'center'}:
+                (col.field=='pickUpDomesticZgl'||col.field=='dateTimePickUpEksportSmZgl' ||
+                col.field=='diplomatNextDay' || col.field=='pickUpDomesticCzas' ||
+                col.field=='pickUpEksportSmCzas')?{'width':'180px'}:
+                (col.field=='eX9'||col.field=='eX10'||col.field=='eX12')?{'width':'80px','text-align':'center'}:{'width':'100px'}"
+                  [sortable]="col.field=='town'||col.field=='fromPostcode'||col.field=='depotCode'">
+
+            <span *ngIf="col.field=='depotCode'">
+                <template pTemplate="header">
+                    <span>Kod<br>Depotu</span>
+                    <!--<span class="sm-small-break-th">Kod Depotu</span>-->
+                </template>
+                <template let-col let-car="rowData" pTemplate="body">
+                    <span>
+                        <button class="btn btn-psz-blue btn-sm-font-small btn-xs" style="width:60px;text-align:left" (click)="onClick(car[col.field], lgModal)">
+                            <i class="fa fa-info-circle" aria-hidden="true"></i>  {{car[col.field]}}
+                        </button>
+                    </span>
+                </template>
+            </span>
+
+            <span *ngIf="col.field=='fromPostcode'">
+                <template pTemplate="header">
+                    <span>Kod<br>pocztowy od</span>
+                </template>
+            </span>
+            <span *ngIf="col.field=='toPostcode'">
+                <template pTemplate="header">
+                    <span>Kod<br>pocztowy do</span>
+                </template>
+            </span>
+
+            <span *ngIf="col.field=='sobota'">
+                <template pTemplate="header">
+                    <span>Doręczenie<br>sobotnie</span>
+                </template>
+                <template let-col let-car="rowData" pTemplate="body">
+                    <span *ngIf="car[col.field]"><i class="fa fa-check-circle fa-1-5x text-success-sm" aria-hidden="true"></i></span>
+                </template>
+            </span>
+
+            <span *ngIf="col.field=='eX9'">
+                <template pTemplate="header">
+                    <span>9<br>Express</span>
+                </template>
+                <template let-col let-car="rowData" pTemplate="body">
+                    <span *ngIf="car[col.field]"><i class="fa fa-check-circle fa-1-5x text-success-sm" aria-hidden="true"></i></span>
+                </template>
+            </span>
+
+            <span *ngIf="col.field=='eX10'">
+                <template pTemplate="header">
+                    <span>10<br>Express</span>
+                </template>
+                <template let-col let-car="rowData" pTemplate="body">
+                    <span *ngIf="car[col.field]"><i class="fa fa-check-circle fa-1-5x text-success-sm" aria-hidden="true"></i></span>
+                </template>
+            </span>
+
+            <span *ngIf="col.field=='eX12'">
+                <template pTemplate="header">
+                    <span>12<br>Express</span>
+                </template>
+                <template let-col let-car="rowData" pTemplate="body">
+                    <span *ngIf="car[col.field]"><i class="fa fa-check-circle fa-1-5x text-success-sm" aria-hidden="true"></i></span>
+                </template>
+            </span>
+
+            <span *ngIf="col.field=='priority'">
+                <template pTemplate="header">
+                    <span>Przesyłka<br>priorytetowa</span>
+                </template>
+            </span>
+            <!--<span *ngIf="col.field=='wieczorneDostarczenie'">
+                <template pTemplate="header">
+                    <span>Wieczorne<br>dostarczenie</span>
+                </template>
+                <template let-col let-car="rowData" pTemplate="body">
+                    <span *ngIf="car[col.field]"><i class="fa fa-check-circle fa-1-5x text-success-sm" aria-hidden="true"></i></span>
+                    <span *ngIf="!car[col.field]"><i class="fa fa-square-o fa-1x" aria-hidden="true"></i></span>
+                </template>
+            </span>
+
+            <span *ngIf="col.field=='standardDeliveryOd'">
+                <template pTemplate="header">
+                    <span>Doręcznia<br>od</span>
+                </template>
+            </span>
+
+            <span *ngIf="col.field=='standardDeliveryDo'">
+                <template pTemplate="header">
+                    <span>Doręcznia<br>do</span>
+                </template>
+            </span>-->
+            <span *ngIf="col.field=='pickUpDomesticZgl'">
+                <template pTemplate="header">
+                    <span>Zamówienia kuriera<br>krajowego do</span>
+                </template>
+            </span>
+            <span *ngIf="col.field=='dateTimePickUpEksportSmZgl'">
+                <template pTemplate="header">
+                    <span>Zamówienie kuriera<br>międzynarodowego do</span>
+                </template>
+            </span>
+            <!--<span *ngIf="col.field=='samochodZwindaDostepnyWstandardzie'">
+                <template pTemplate="header">
+                    <span>Samochod z winda<br>dostepny w standardzie</span>
+                </template>
+            </span>-->
+
+            <span *ngIf="col.field=='diplomatNextDay'">
+                <template pTemplate="header">
+                    <span>Najwcześniejsza dostawa<br>przesyłki pozasystemowej</span>
+                </template>
+            </span>
+
+            <span *ngIf="col.field=='serwisPodmiejski'">
+                <template pTemplate="header">
+                    <span>Serwis<br>podmiejski</span>
+                </template>
+                <template let-col let-car="rowData" pTemplate="body">
+                    <span *ngIf="car[col.field]"><i class="fa fa-check-circle fa-1-5x text-success-sm" aria-hidden="true"></i></span>
+                </template>
+            </span>
+            <span *ngIf="col.field=='serwisMiejski'">
+                <template pTemplate="header">
+                    <span>Serwis<br>miejski</span>
+                </template>
+                <template let-col let-car="rowData" pTemplate="body">
+                    <span *ngIf="car[col.field]"><i class="fa fa-check-circle fa-1-5x text-success-sm" aria-hidden="true"></i></span>
+                </template>
+            </span>
+
+            <span *ngIf="col.field=='pickUpDomesticCzas'">
+                <template pTemplate="header">
+                    <span>Minimalny czas na odbiór<br>przesyłki drogowej</span>
+                </template>
+            </span>
+            <span *ngIf="col.field=='pickUpEksportSmCzas'">
+                <template pTemplate="header">
+                    <span>Minimalny czas na odbiór<br>przesyłki lotniczej</span>
+                </template>
+            </span>
+
+        </p-column>
+    </p-dataTable>
+</div>
+<lg-modal #lgModal [myheader]="' '">
+    <depot-details [depotsTnt]='depotTnt'></depot-details>
+</lg-modal>
+

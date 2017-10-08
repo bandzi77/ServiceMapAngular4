@@ -1,0 +1,40 @@
+
+#Ignore thumbnails created by Windows
+Thumbs.db
+#Ignore files built by Visual Studio
+*.obj
+*.exe
+*.pdb
+*.user
+*.aps
+*.pch
+*.vspscc
+*_i.c
+*_p.c
+*.ncb
+*.suo
+*.tlb
+*.tlh
+*.bak
+*.cache
+*.ilk
+*.log
+[Bb]in
+[Dd]ebug*/
+*.lib
+*.sbr
+obj/
+[Rr]elease*/
+_ReSharper*/
+[Tt]est[Rr]esult*
+.vs/
+#Nuget packages folder
+packages/
+lib/
+*.js.map
+/ServiceMap/src/ServiceMap/wwwroot/app/app.component.js
+/ServiceMap/src/ServiceMap/wwwroot/app/app.module.js
+/ServiceMap/src/ServiceMap/wwwroot/app/main.js
+/ServiceMap/src/ServiceMap/wwwroot/app/environments/environment.js
+/ServiceMap/src/ServiceMap/wwwroot/app/environments/environment.prod.js
+/ServiceMap/src/ServiceMap/wwwroot/app/polyfills.js

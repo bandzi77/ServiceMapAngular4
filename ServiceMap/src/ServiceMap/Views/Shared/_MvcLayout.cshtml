@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" http-equiv="X-UA-Compatible" content="width=device-width"/>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <title>TNT Polska | Mapa Serwisowa</title>
+    <base href="~/" />
+    <link rel="stylesheet" asp-href-include="~/lib/bootstrap/dist/css/*min.css" />
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" asp-href-include="~/lib/font-awesome/css/font-awesome.css" />
+    <link asp-href-include="~/common/commonstyle.css" rel="stylesheet" />
+    <link asp-href-include="~/common/MvcLayout.css" rel="stylesheet" />
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    <!--Potrzebne dla popovera-->
+    <script src="~/lib/sm-common/sm-common.js"></script>
+ </head>
+<body>
+    <div>
+        <nav class="navbar navbar-default" >
+            <div class="container-fluid">
+                <!--  <div class="navbar-collapse collapse">-->
+                <div class="navbar-header" style="padding:10px;">
+                    <a  href="http://www.tnt.com/express/pl_pl/site/home.html">
+                        <img alt="TNT" src="~/app/assets/images/logo.svg" style="width: 98px; height: 35px;" />
+                    </a>
+                </div>
+                <ul class="nav navbar-nav">
+                    <li style="white-space:nowrap" class="navbar-text naglowek ">
+                        Mapa Serwisowa
+                    </li>
+                </ul>
+                <p class="navbar-text navbar-right">
+                    <a href="@Url.Action("Login","Account",new { returnUrl=""})" class="navbar-link" style="padding-right:15px">
+                        <i class="fa fa-sign-in" aria-hidden="true"></i>  Zaloguj
+                    </a>
+                </p>
+            </div>
+        </nav>
+    </div>
+
+    @RenderBody()
+    @RenderSection("scripts", required: false)
+
+    <environment names="Development">
+        @* TODO *@
+    </environment>
+    <footer class="navbar navbar-default navbar-fixed-bottom text-center">
+        <div class="container-fluid">
+            <p class="sm-text-dark-grey-footer">TNT Express Worldwide (Poland) sp. z o.o. &copy; 2017 - Mapa Serwisowa 1.0.0.<br>
+                @*<a href="mailto:hyla.mariusz@wp.pl" class="sm-text-dark-grey-footer sm-link">
+                    <i class="fa fa-at" aria-hidden="true"></i> Designed by
+                </a>*@
+             </p>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,76 @@
+﻿@{
+    Layout = "_MvcLayout";
+}
+
+@model LoginModel
+
+@* TODO style *@
+<div class="panel-body" style="margin-top: 5%;">
+    <div class="container">
+        <div class="col-md-4 col-md-offset-4">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    Logowanie
+                </div>
+                <div class="panel-body center-block">
+                    <form asp-action="Login" method="post">
+                        <div class="text-danger" asp-validation-summary="All"></div>
+                        <input type="hidden" name="returnUrl" value="@ViewBag.returnUrl" />
+                        <div class="form-group">
+                            <label asp-for="Email"></label>
+                            <input asp-for="Email" class="form-control" />
+
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Password"></label>
+                            <input asp-for="Password" class="form-control" />
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 text-left " style="vertical-align:bottom">
+                                <a asp-action="ForgotPassword"
+                                   asp-controller="Account" class="sm-link">
+                                    Nie pamiętam hasła
+                                </a>  @*href="@Url.Content("ForgotPassword")"*@
+                            </div>
+                            <div class="col-md-6 text-right">
+                                <button class="btn btn-sm-orange" type="submit" id="LogonSm">
+                                    <i class="fa fa-sign-in" aria-hidden="true"></i> Zaloguj
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br><br>
+<div class="container">
+    <label for="AcceptanceOfTermsSM" style="font-weight:normal;">
+        <input id="AcceptanceOfTermsSM"
+               type="checkbox" checked />
+        Logując się do aplikacji wyrażam zgodę na przetwarzanie moich danych osobowych przez TNT Express Worldwide (Poland) Sp. z o.o. z siedzibą w Warszawie przy ul. Annopol 19. Dane będą przetwarzane w celu prowadzenia procesu rejestracji i realizacji usługi transportowej. Jednocześnie oświadczam, że zostałem/am poinformowany/a, o prawie do wglądu do moich danych oraz możliwości ich poprawiania, samo zaś ich podanie ma charakter dobrowolny, zgodnie z ustawą z dnia 29 sierpnia 1997 r. o ochronie danych osobowych (Dz. U. z 2014 r. poz. 1182 z późn. zm), jednak jest niezbędne do realizacji celu.
+    </label>
+</div>
+@* TO DO Po akcjeptacji przez Łukasza, przenieść do osobnego pliku js*@
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        // Sprawdza przy załadowaniu czy zgoda jest zaznaczona
+        if ($('#AcceptanceOfTermsSM').is(':checked')) {
+            $('#LogonSm').attr("disabled", false);
+        }
+        else {
+            $('#LogonSm').attr("disabled", true);
+        }
+
+        // Zdarzenie na checkboxie dotyczącym wyrażenia zgody
+        $('#AcceptanceOfTermsSM').click(function () {
+            if (this.checked) {
+                $('#LogonSm').attr("disabled", false);
+            } else {
+                $('#LogonSm').attr("disabled", true);
+            }
+        });
+    });
+</script>
