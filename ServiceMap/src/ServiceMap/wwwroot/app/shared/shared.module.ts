@@ -9,12 +9,8 @@ import { ToastrService } from './toastr.service';
 import { ToastModule, ToastOptions } from 'ng2-toastr/ng2-toastr';
 import { CustomOption } from './toastr-custom-option';
 import { DataTableModule, SharedModule, MultiSelectModule, ToggleButtonModule, DropdownModule } from 'primeng/primeng';
+import { BusyConfigFactory } from './busy-config';
 
-//new BusyConfig({
-//    backdrop: true,
-//    delay: 0,
-//    minDuration: 0
-//})
 
 
 let options: BusyConfig = {
@@ -49,7 +45,7 @@ let options: BusyConfig = {
     imports: [
         CommonModule,
         BrowserAnimationsModule,
-        BusyModule.forRoot(<BusyConfig>options),    
+        BusyModule,
         ModalModule.forRoot(),
         PopoverModule.forRoot(),
         TooltipModule.forRoot(),
@@ -60,10 +56,14 @@ let options: BusyConfig = {
     providers: [
         ToastrService,
         {
-            provide: { ToastOptions },
+            provide: ToastOptions,
             useClass: CustomOption,
-
-        }]
+        },
+        {
+            provide: BusyConfig,
+            useFactory: BusyConfigFactory
+        }
+    ]
 })
 
 export class SmSharedModule {

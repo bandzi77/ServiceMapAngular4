@@ -11,8 +11,8 @@ import { LazyLoadEvent, SelectItem, MultiSelect, DataTable } from 'primeng/prime
 import { ToastrService,IToastrSm } from '../shared/toastr.service';
 
 @Component({
-    templateUrl: 'app/servicesTnt/serviceTnt-list.component.html',
-    styleUrls: ['app/servicesTnt/serviceTnt-list.component.css']
+    templateUrl: './serviceTnt-list.component.html',
+    styleUrls: ['./serviceTnt-list.component.css']
 })
 
 export class ServiceTntListComponent implements OnInit {

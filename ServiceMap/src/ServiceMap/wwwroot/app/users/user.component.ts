@@ -18,8 +18,8 @@ import { IResult } from '../shared/common';
 
 @Component({
     selector: 'cr-user',
-    templateUrl: './app/users/user.component.html',
-    styleUrls: ['./app/users/user.component.css'],
+    templateUrl: './user.component.html',
+    styleUrls: ['./user.component.css'],
     animations: [
         trigger('shrinkOut', [
             state('true', style({ opacity: 1 })),

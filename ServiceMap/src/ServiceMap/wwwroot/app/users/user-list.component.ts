@@ -6,8 +6,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { SelectItem } from 'primeng/primeng'
 
 @Component({
-    templateUrl: 'app/users/user-list.component.html',
-    styleUrls: ['app/users/user-list.component.css']
+    templateUrl: './user-list.component.html',
+    styleUrls: ['./user-list.component.css']
 })
 
 export class UserListComponent implements OnInit, OnDestroy {

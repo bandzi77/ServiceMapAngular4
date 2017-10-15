@@ -4,7 +4,6 @@
             <ul class="nav navbar-nav navbar-left">
                 <li [routerLinkActive]="['active']"><a [routerLink]="['/serviceTnt']">Mapa Serwisowa</a></li>
                 <li [routerLinkActive]="['active']" *ngIf="currentUser.isSuperUser"><a [routerLink]="['/userlist']">Lista Użytkowników</a></li>
-                <!--<li *ngIf="isSuperusers"><a [routerLink]="['/welcome']">Konta Użytkowników[queryParams]="{ _id:0 }</a></li>-->
                 <li [routerLinkActive]="['active']" *ngIf="currentUser.isSuperUser"><a [routerLink]="['/adduser']" [queryParams]="{ _id:0 }">Dodaj Użytkownika</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">

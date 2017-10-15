@@ -3,7 +3,7 @@ import { ModalDirective } from 'ngx-bootstrap';
 
 @Component({
     selector: 'lg-modal',
-    templateUrl: 'app/shared/lgModal.component.html'
+    templateUrl: './lgModal.component.html'
 })
 
 export class LgModalComponent {

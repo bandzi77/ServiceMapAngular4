@@ -3,7 +3,7 @@ import { IDepotDetails } from './depotDetails';
 
 @Component({
     selector: 'depot-details',
-    templateUrl: 'app/servicesTnt/depot-detail.component.html'
+    templateUrl: './depot-detail.component.html'
 })
 
 export class ServiceTntDetailComponent implements OnInit {

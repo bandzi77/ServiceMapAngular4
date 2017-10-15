@@ -14,8 +14,8 @@ import 'rxjs/add/observable/throw';
 
 @Component({
     selector: 'sm-app',
-    templateUrl: 'app/app.component.html',
-    styleUrls: ['/app.component.css']
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
 
