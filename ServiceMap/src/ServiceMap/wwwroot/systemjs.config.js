@@ -4,7 +4,7 @@
  */
 (function (global) {
     System.config({
-        //transpiler: 'transpiler-module',
+        transpiler: 'transpiler-module',
         paths: {
             // paths serve as alias
             'npm:': 'node_modules/'
@@ -68,7 +68,7 @@
                 defaultExtension: 'js'
             },
             'angular2-busy': {
-                main: 'index.js',
+                main: './index.js',
                 defaultExtension: 'js'
             },
             'ng2-toastr': {

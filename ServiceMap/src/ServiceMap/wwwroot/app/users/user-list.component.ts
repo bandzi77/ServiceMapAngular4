@@ -11,12 +11,12 @@ import { SelectItem } from 'primeng/primeng'
 })
 
 export class UserListComponent implements OnInit, OnDestroy {
-    private busyIndicator: Subscription;
+    busyIndicator: Subscription;
     users: IUser[];
     private sub: Subscription;
     private tntUserName: string = '';
-    private email: string = '';
-    private showLockedOnly: boolean = false;
+    email: string = '';
+    showLockedOnly: boolean = false;
     errorMessage: string;
     columnOptions: SelectItem[];
     checkSelector: SelectItem[];
@@ -48,7 +48,7 @@ export class UserListComponent implements OnInit, OnDestroy {
         //this.sub.unsubscribe();
     }
 
-    private onSearchUsers() {
+    onSearchUsers() {
         console.log('Wyszukiwanie użytkowników');
         this.router.navigate(['/userlist'], { queryParams: { email: this.email, showLockedOnly: this.showLockedOnly } });
         let filtr = this._createUserFilter();

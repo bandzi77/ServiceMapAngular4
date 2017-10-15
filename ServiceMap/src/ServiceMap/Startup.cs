@@ -44,7 +44,7 @@ namespace ServiceMap
             options.UseSqlServer(Configuration["Data:ConnectionStrings:DbServiceMapIndentity"]));
             services.AddAntiforgery(o => o.SuppressXFrameOptionsHeader = true);
     
-                services.AddIdentity<AppUser, IdentityRole>(opts =>
+            services.AddIdentity<AppUser, IdentityRole>(opts =>
             {
                 opts.User.RequireUniqueEmail = true;
                 //opts.User.AllowedUserNameCharacters = "abcdefghijklmnopqrstuvwxyz";
@@ -70,7 +70,48 @@ namespace ServiceMap
                 opts.Cookies.ApplicationCookie.AuthenticationScheme = Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationDefaults.AuthenticationScheme;
                 opts.Cookies.ApplicationCookie.ReturnUrlParameter = Microsoft.AspNetCore.Authentication.Cookies.CookieAuthenticationDefaults.ReturnUrlParameter;
 
-                opts.Cookies.ApplicationCookie.Events = new CookieAuthenticationEvents
+                //opts.Cookies.ApplicationCookie.Events = new CookieAuthenticationEvents
+                //{
+                //    OnRedirectToLogin = ctx =>
+                //    {
+                //        if (ctx.Request.Path.StartsWithSegments("/api") &&
+                //            ctx.Response.StatusCode == (int)HttpStatusCode.OK)
+                //        {
+                //            ctx.Response.StatusCode = (int)HttpStatusCode.Unauthorized;
+                //        }
+                //        else
+                //        {
+                //            ctx.Response.Redirect(ctx.RedirectUri);
+                //        }
+                //        return Task.FromResult(0);
+                //    }
+                //};
+                // Do zastanowienia nad inną obsługą.
+                //OnRedirectToAccessDenied = ctx =>
+                //{
+                //    if (ctx.Request.Path.StartsWithSegments("/api") &&
+                //        ctx.Response.StatusCode == (int)HttpStatusCode.OK)
+                //    {
+                //        ctx.Response.StatusCode = (int)HttpStatusCode.Forbidden;
+                //    }
+                //    else
+                //    {
+                //        ctx.Response.Redirect(ctx.RedirectUri);
+                //    }
+                //    return Task.FromResult(0);
+                //}
+
+
+            })
+                // W przypadku innej ścieżki niż domyślna
+                //(opt=>opt.Cookies.ApplicationCookie.LoginPath="/")
+                .AddEntityFrameworkStores<AppIdentityDbContext>()
+                .AddDefaultTokenProviders();
+
+            services.Configure<IdentityOptions>(config => {
+
+                config.Cookies.ApplicationCookie.Events =
+                new CookieAuthenticationEvents
                 {
                     OnRedirectToLogin = ctx =>
                     {
@@ -85,27 +126,9 @@ namespace ServiceMap
                         }
                         return Task.FromResult(0);
                     }
-                    // Do zastanowienia nad inną obsługą.
-                    //OnRedirectToAccessDenied = ctx =>
-                    //{
-                    //    if (ctx.Request.Path.StartsWithSegments("/api") &&
-                    //        ctx.Response.StatusCode == (int)HttpStatusCode.OK)
-                    //    {
-                    //        ctx.Response.StatusCode = (int)HttpStatusCode.Forbidden;
-                    //    }
-                    //    else
-                    //    {
-                    //        ctx.Response.Redirect(ctx.RedirectUri);
-                    //    }
-                    //    return Task.FromResult(0);
-                    //}
                 };
+            });
 
-            })
-                // W przypadku innej ścieżki niż domyślna
-                //(opt=>opt.Cookies.ApplicationCookie.LoginPath="/")
-                .AddEntityFrameworkStores<AppIdentityDbContext>()
-                .AddDefaultTokenProviders();
             //services.AddScoped<IAuthorizationService, AuthorizationService>();
             services.AddSingleton(Configuration);
             services.AddScoped<RoleManager<IdentityRole>>();

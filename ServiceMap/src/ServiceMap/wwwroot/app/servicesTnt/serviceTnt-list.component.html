@@ -41,14 +41,14 @@
     </div>-->
     <!--[first]="pageInfo.current_page"-->
 
-
+    <!--[sortFile]="town"-->
     <p-dataTable #dataTable [value]="servicesTnt"
                  scrollable="true" scrollHeight="420px" scrollWidth="100%"
                  [lazy]="true" [rows]="15"
                  [paginator]="true" [pageLinks]="8"
                  [rowsPerPageOptions]="[15,25,50]"
                  [totalRecords]="paging.totalCount" (onLazyLoad)="loadPageLazy($event)"
-                 [sortFile]="town"
+               
                  [rowHover]="true"
                  >
         <p-header>

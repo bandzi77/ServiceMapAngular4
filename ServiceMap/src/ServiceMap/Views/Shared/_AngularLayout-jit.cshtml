@@ -28,17 +28,17 @@
 
 
     <!-- Configure SystemJS -->
+    <script src="systemjs.config.js"></script>
     <!--Potrzebne dla popovera-->
     <script src="~/sm-common/sm-common.js"></script>
     <link href="~/node_modules/ng2-toastr/bundles/ng2-toastr.min.css" rel="stylesheet" />
     @*<script src="~/node_modules/ng2-toastr/bundles/ng2-toastr.min.js"></script>*@
-    @*<script>
+    <script>
         System.import('app').catch(function (err) { console.error(err); });
-    </script>*@
+    </script>
 </head>
 <body>
         @RenderBody()
         @RenderSection("scripts", required: false)
 </body>
-<script src="~/aot/build.min.js"></script>
 </html>

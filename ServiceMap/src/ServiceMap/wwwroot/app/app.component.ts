@@ -42,6 +42,26 @@ export class AppComponent implements OnInit {
             error => console.error(<any>error));
     }
 
+
+    Nawigate(web: string): void { 
+        switch (web) {
+            case "M":
+                window.open("http://www.tnt.com/express/pl_pl/site/home.html", "_blank");
+                break;
+            case "T":
+                window.open("http://e-tnt.pl/ooa/", "_blank");
+                break;
+            case "K":
+                window.location.href = "mailto: pl.kontakt@tnt.com";
+                break;
+            case "L":
+                window.open("Account/Logout", "_self");
+                break;
+            default:
+                break;
+        }
+    }
+
     private checkPermissions(): Observable<ICurrentUser> {
         return this._http.get(apiUrl.getpermissions)
             .map(this._extractData)
