@@ -64,6 +64,9 @@
                 main: './index.js',
                 defaultExtension: 'js'
             },
+            'ng2-toastr': {
+                defaultExtension: 'js'
+            },
             'core-js': {
                 main: 'index.js',
                 defaultExtension: 'js'

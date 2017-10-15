@@ -7,9 +7,7 @@
   "scripts": {
     "tsc": "tsc",
     "tsc:w": "tsc -w",
-    "lint": "tslint ./app/**/*.ts -t verbose",
-    "typings": "typings",
-    "postinstall": "typings install"
+    "lint": "tslint ./app/**/*.ts -t verbose"
   },
   "private": true,
   "dependencies": {
@@ -25,9 +23,9 @@
     "@angular/router": "4.4.4",
     "angular2-busy": "2.0.4",
     "core-js": "2.5.1",
+    "ng2-toastr": "^4.1.2",
     "ngx-bootstrap": "1.6.3",
-    "ng2-toastr": "4.1.2",
-    "primeng": "4.2.2",
+    "primeng": "2.0.3",
     "reflect-metadata": "0.1.10",
     "rxjs": "5.4.3",
     "systemjs": "0.20.19",
@@ -42,7 +40,6 @@
     "rollup-plugin-node-resolve": "3.0.0",
     "rollup-plugin-uglify": "2.0.1",
     "tslint": "5.7.0",
-    "typescript": "2.5.3",
-    "typings": "2.1.1"
+    "typescript": "~2.3.3"
   }
 }

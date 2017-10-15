@@ -5,6 +5,7 @@ import { BusyModule, BusyConfig } from 'angular2-busy';
 import { ModalModule, PopoverModule, TooltipModule } from 'ngx-bootstrap';
 import { PageModule } from '../pagination/page.module';
 import { LgModalComponent } from './lgModal.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrService } from './toastr.service';
 import { ToastModule, ToastOptions } from 'ng2-toastr/ng2-toastr';
 import { CustomOption } from './toastr-custom-option';
@@ -28,10 +29,12 @@ import { DataTableModule, SharedModule, MultiSelectModule, ToggleButtonModule, D
         SharedModule,
         MultiSelectModule,
         ToggleButtonModule,
-        DropdownModule
+        DropdownModule,
+        BrowserAnimationsModule
     ],
     imports: [
         CommonModule,
+        BrowserAnimationsModule,
         BusyModule.forRoot(
             new BusyConfig({
                 backdrop: true,
