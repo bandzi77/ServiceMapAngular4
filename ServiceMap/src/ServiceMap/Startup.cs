@@ -172,22 +172,12 @@ namespace ServiceMap
 
             app.UseMvc(routes =>
             {
-                //routes.MapRoute(
-                //name: "Error",
-                //template: "Error",
-                //defaults: new { controller = "Error", action = "Error" });
-
-                //routes.MapRoute(
-                //  name: "infoPanel",
-                //  template: "{controller=Account}/{action=InfoPanel}/{message}");
-
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}");
 
-                routes.MapSpaFallbackRoute(
-                        name: "spa-fallback",
-                        defaults: new { controller = "Home", action = "Index" });
+                routes.MapSpaFallbackRoute("angular-fallback",
+                    new { controller = "Home", action = "Index" });
             });
         }
     }

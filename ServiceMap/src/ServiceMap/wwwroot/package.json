@@ -4,7 +4,7 @@
   "author": "Mariusz Hyla",
   "description": "Service Map for TNT Clients",
   "angular-cli": {},
-  "scripts": {
+  "scripts": {  
     "tsc": "tsc",
     "tsc:w": "tsc -w",
     "lint": "tslint ./app/**/*.ts -t verbose",

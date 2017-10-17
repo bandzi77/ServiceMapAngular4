@@ -45,5 +45,14 @@ namespace ServiceMap.Controllers.apiControllers
 
             return Ok(result);
         }
+
+
+        [HttpPost("Logout")]
+        public async Task<IActionResult> Logout()
+        {
+            await signInManager.SignOutAsync();
+            return Ok();
+        }
+
     }
 }

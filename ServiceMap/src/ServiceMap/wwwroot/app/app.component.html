@@ -13,15 +13,17 @@
                     </a>
                     <ul class="dropdown-menu" role="menu" aria-labelledby="userMenu">
                         <li role="presentation">
-                            <a href="#" (click)="Nawigate('M')" >
-                                <i class="fa fa-home" aria-hidden="true"></i> Strona główna TNT
-                            </a>
-                        </li>
+                            <!--<a href="http://www.tnt.com/express/pl_pl/site/home.html" target="_blank">-->
+                                <a (click)="Nawigate('M')">
+                                    <i class="fa fa-home" aria-hidden="true"></i> Strona główna TNT
+                                </a>
+</li>
                         <li role="presentation">
-                            <a href="#" (click)="Nawigate('T')">
-                                <i class="fa fa-truck" aria-hidden="true"></i> Tereny Odległe
-                            </a>
-                        </li>
+                            <!--<a href="http://e-tnt.pl/ooa/" target="_blank">-->
+                                <a (click)="Nawigate('T')">
+                                    <i class="fa fa-truck" aria-hidden="true"></i> Tereny Odległe
+                                </a>
+</li>
                     </ul>
                 </li>
                 <li class="dropdown">
@@ -30,10 +32,11 @@
                     </a>
                     <ul class="dropdown-menu" role="menu" aria-labelledby="userMenu">
                         <li role="presentation">
-                            <a href="#" (click)="Nawigate('K')" tabindex="-1" tooltip="Email do Działu Obsługi Klienta" placement="bottom">
-                                <i class="fa fa-at" aria-hidden="true"></i> pl.kontakt@tnt.com
-                            </a>
-                        </li>
+                            <!--<a href="mailto:pl.kontakt@tnt.com" tabindex="-1" tooltip="Email do Działu Obsługi Klienta" placement="bottom">-->
+                                <a (click)="Nawigate('K')" tabindex="-1" tooltip="Email do Działu Obsługi Klienta" placement="bottom">
+                                    <i class="fa fa-at" aria-hidden="true"></i> pl.kontakt@tnt.com
+                                </a>
+</li>
                         <li role="presentation">
                             <div class="sm-dropdown-padding"
                                  tooltip="Telefon do Działu Obsługi Klienta" placement="bottom">

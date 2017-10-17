@@ -32,7 +32,7 @@
             'moment': 'npm:moment/bundles/moment.umd.js',
             'ngx-bootstrap': 'npm:ngx-bootstrap/bundles/ngx-bootstrap.umd.js',
             'primeng':  'npm:primeng',
-
+            'tslib': 'npm:tslib/tslib.js',
             // Busy Indicator
             'ts-metadata-helper': 'npm:angular2-busy/node_modules/ts-metadata-helper',
             'angular2-dynamic-component': 'npm:angular2-busy/node_modules/angular2-dynamic-component',
@@ -42,7 +42,7 @@
         },
         // packages tells the System loader how to load when no filename and/or no extension
         packages: {
-            'app': {
+            'app': { 
                 main: './main.js',
                 defaultExtension: 'js',
                 meta: {
@@ -51,10 +51,10 @@
                     }
                 },
             },
-          
             'rxjs': {
                 defaultExtension: 'js'
             },
+
             'ngx-bootstrap':
             {
                 defaultExtension: 'js'

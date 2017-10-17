@@ -2,6 +2,7 @@ import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { apiUrl } from './environments/environment';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
+import { Router } from "@angular/router";
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
 import { ToastrService } from './shared/toastr.service';
 import { Subscription } from 'rxjs/Subscription';
@@ -30,7 +31,9 @@ export class AppComponent implements OnInit {
         private location: Location,
         private toastr: ToastsManager,
         vcr: ViewContainerRef,
-        private toastService: ToastrService) {
+        private toastService: ToastrService,
+        private router: Router
+    ) {
         this.toastr.setRootViewContainerRef(vcr);
     };
 
@@ -55,7 +58,11 @@ export class AppComponent implements OnInit {
                 window.location.href = "mailto: pl.kontakt@tnt.com";
                 break;
             case "L":
-                window.open("Account/Logout", "_self");
+                this._http.post("api/app/logout", null)
+                    .subscribe(result => {
+                        //location.reload();
+                        window.open("Account/Login", "_self");
+                    });
                 break;
             default:
                 break;

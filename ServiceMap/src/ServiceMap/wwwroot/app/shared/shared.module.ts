@@ -11,16 +11,15 @@ import { CustomOption } from './toastr-custom-option';
 import { DataTableModule, SharedModule, MultiSelectModule, ToggleButtonModule, DropdownModule } from 'primeng/primeng';
 import { BusyConfigFactory } from './busy-config';
 
+//let options: BusyConfig = {
+//    delay: 0,
+//    minDuration: 0,
+//    backdrop: true,
+//    message: 'Proszę czekać...',
+//    template: BUSY_CONFIG_DEFAULTS.template,
+//    wrapperClass: BUSY_CONFIG_DEFAULTS.wrapperClass
+//};
 
-
-let options: BusyConfig = {
-    delay: 0,
-    minDuration: 0,
-    backdrop: true,
-    message: 'Proszę czekać...',
-    template: BUSY_CONFIG_DEFAULTS.template,
-    wrapperClass: BUSY_CONFIG_DEFAULTS.wrapperClass
-};
 
 @NgModule({
     declarations: [
